@@ -1,7 +1,5 @@
 package br.univille.geekreviews.dtos;
 
-import br.univille.geekreviews.domain.enums.Categoria;
-
 import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.util.Calendar;
@@ -24,9 +22,9 @@ public class MidiaDTO extends AbstractDTO {
 
     @NotNull(message = "Titulo nulo")
     private String titulo;
-/*
+
     @NotNull(message = "Categorias nulo")
-    private List<String> categorias;*/
+    private List<CategoriaDTO> categorias;
 
     public Calendar getDataLancamento() {
         return dataLancamento;
@@ -79,12 +77,12 @@ public class MidiaDTO extends AbstractDTO {
     public boolean isEdicao() {
         return this.getId() != null;
     }
-/*
-    public List<String> getCategorias() {
+
+    public List<CategoriaDTO> getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(List<String> categorias) {
+    public void setCategorias(List<CategoriaDTO> categorias) {
         this.categorias = categorias;
-    }*/
+    }
 }

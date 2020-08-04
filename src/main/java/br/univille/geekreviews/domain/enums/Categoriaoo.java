@@ -5,7 +5,7 @@ import br.univille.geekreviews.services.exception.BusinessException;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Categoria {
+public enum Categoriaoo {
 
     PS4(0, "ps4"), XBOXONE(1, "xbox-one"), SWITCH(2, "switch"),
     AVENTURA(3, "aventura"), ACAO(4, "acao"), SUSPENSE(5, "suspense"),
@@ -17,15 +17,15 @@ public enum Categoria {
 
     private String descricao;
 
-    Categoria(int codigo) {
+    Categoriaoo(int codigo) {
         this.codigo = codigo;
     }
 
-    Categoria(String descricao) {
+    Categoriaoo(String descricao) {
         this.descricao = descricao;
     }
 
-    Categoria(int codigo, String descricao) {
+    Categoriaoo(int codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -38,8 +38,8 @@ public enum Categoria {
         return descricao;
     }
 
-    public static Categoria getByCodigo(int codigo) {
-        for (Categoria cat : Categoria.values()) {
+    public static Categoriaoo getByCodigo(int codigo) {
+        for (Categoriaoo cat : Categoriaoo.values()) {
             if (cat.getCodigo() == codigo)
                 return cat;
         }
@@ -47,8 +47,8 @@ public enum Categoria {
         throw new BusinessException("Código inválido de categoria");
     }
 
-    public static Categoria getByDescricao(String descricao) {
-        for (Categoria cat : Categoria.values()) {
+    public static Categoriaoo getByDescricao(String descricao) {
+        for (Categoriaoo cat : Categoriaoo.values()) {
             if (cat.getDescricao().equals(descricao))
                 return cat;
         }
@@ -56,8 +56,8 @@ public enum Categoria {
         throw new BusinessException("Descrição invalida de categoria");
     }
 
-    public static List<Categoria> getByDescricaoList(List<String> categorias) {
-        List<Categoria> listCat = new ArrayList();
+    public static List<Categoriaoo> getByDescricaoList(List<String> categorias) {
+        List<Categoriaoo> listCat = new ArrayList();
 
         for (String cat : categorias)
             listCat.add(getByDescricao(cat));

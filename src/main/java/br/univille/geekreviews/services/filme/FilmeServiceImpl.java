@@ -4,15 +4,13 @@ import br.univille.geekreviews.domain.Filme;
 import br.univille.geekreviews.dtos.filme.FilmeDTO;
 import br.univille.geekreviews.dtos.filme.FilmePesquisaDTO;
 import br.univille.geekreviews.mappers.FilmeMapper;
-import br.univille.geekreviews.repositories.filme.FilmeRepository;
+import br.univille.geekreviews.repositories.FilmeRepository;
 import br.univille.geekreviews.services.exception.BusinessException;
 import br.univille.geekreviews.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
