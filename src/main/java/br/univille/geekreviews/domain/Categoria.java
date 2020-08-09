@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class Categoria extends EntityBaseRoot implements Serializable {
+public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,12 +31,10 @@ public class Categoria extends EntityBaseRoot implements Serializable {
         this.descricao = descricao;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }

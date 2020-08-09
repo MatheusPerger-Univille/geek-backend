@@ -1,8 +1,12 @@
 package br.univille.geekreviews.dtos.filme;
 
+import br.univille.geekreviews.dtos.AvaliacaoDTO;
+import br.univille.geekreviews.dtos.ComentarioDTO;
 import br.univille.geekreviews.dtos.MidiaDTO;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FilmeDTO extends MidiaDTO {
 
@@ -20,6 +24,12 @@ public class FilmeDTO extends MidiaDTO {
 
     @NotNull(message = "Faixa etária nulo")
     private String faixaEtaria;
+
+    private List<AvaliacaoDTO> avaliacoes;
+
+    private List<ComentarioDTO> comentarios;
+
+    private int notaMidia;
 
     public String getDirecao() {
         return direcao;
@@ -59,5 +69,32 @@ public class FilmeDTO extends MidiaDTO {
 
     public void setFaixaEtaria(String faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
+    }
+
+    public List<AvaliacaoDTO> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<AvaliacaoDTO> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public int getNotaMidia() {
+        return notaMidia;
+    }
+
+    public void setNotaMidia(int notaMidia) {
+        this.notaMidia = notaMidia;
+    }
+
+    public List<ComentarioDTO> getComentarios() {
+        if (comentarios == null)
+            return new ArrayList<ComentarioDTO>();
+
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
     }
 }
