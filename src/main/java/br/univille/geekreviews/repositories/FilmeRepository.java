@@ -1,4 +1,4 @@
-package br.univille.geekreviews.repositories.filme;
+package br.univille.geekreviews.repositories;
 
 import br.univille.geekreviews.domain.Filme;
 import org.springframework.data.jpa.repository.JpaRepository;

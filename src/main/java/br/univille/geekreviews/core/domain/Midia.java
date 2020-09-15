@@ -1,13 +1,12 @@
 package br.univille.geekreviews.core.domain;
 
+import br.univille.geekreviews.domain.Avaliacao;
 import br.univille.geekreviews.domain.Usuario;
-import br.univille.geekreviews.domain.enums.Categoria;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 @MappedSuperclass
 public abstract class Midia extends EntityBaseRoot implements Serializable {
@@ -35,12 +34,6 @@ public abstract class Midia extends EntityBaseRoot implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
-/*
-    @Enumerated(EnumType.STRING)
-    @ElementCollection(targetClass = Categoria.class)
-    @CollectionTable(name = "midiaCategoriaFk",
-            joinColumns = @JoinColumn(name = "id"))
-    private List<Categoria> categorias;*/
 
     public Midia() {
     }
@@ -110,12 +103,5 @@ public abstract class Midia extends EntityBaseRoot implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-/*
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }*/
 }
