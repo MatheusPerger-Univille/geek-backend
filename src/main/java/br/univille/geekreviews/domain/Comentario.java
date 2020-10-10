@@ -16,6 +16,11 @@ public class Comentario extends EntityBaseRoot implements Serializable {
 
     private String comentario;
 
+    // @NotNull(message = "Usuário nulo")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
+
     @ManyToOne
     @JoinColumn(name = "filme_id", referencedColumnName = "id")
     private Filme filme;
@@ -40,6 +45,11 @@ public class Comentario extends EntityBaseRoot implements Serializable {
         this.filme = filme;
     }
 
+    public Comentario(String comentario, Serie serie) {
+        this.comentario = comentario;
+        this.serie = serie;
+    }
+
     @Override
     public Long getId() {
         return id;
@@ -56,6 +66,14 @@ public class Comentario extends EntityBaseRoot implements Serializable {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Filme getFilme() {

@@ -16,7 +16,7 @@ public class Avaliacao extends EntityBaseRoot implements Serializable {
     private Long id;
 
     // @NotNull(message = "Usuário nulo")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
@@ -46,6 +46,12 @@ public class Avaliacao extends EntityBaseRoot implements Serializable {
         this.id = id;
         this.nota = nota;
         this.filme = filme;
+    }
+
+    public Avaliacao(Long id, int nota, Serie serie) {
+        this.id = id;
+        this.nota = nota;
+        this.serie = serie;
     }
 
     public Avaliacao(Long id, Usuario usuario, int nota) {

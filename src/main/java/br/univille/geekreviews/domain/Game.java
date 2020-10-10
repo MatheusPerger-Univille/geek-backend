@@ -82,7 +82,7 @@ public class Game extends Midia {
 
     public int getNotaMidia() {
         int nota = getAvaliacoes().stream().mapToInt(Avaliacao::getNota).sum();
-        return nota / getAvaliacoes().size();
+        return getAvaliacoes().size() == 0 ? 0 : nota / getAvaliacoes().size();
     }
 
     public List<Comentario> getComentarios() {
