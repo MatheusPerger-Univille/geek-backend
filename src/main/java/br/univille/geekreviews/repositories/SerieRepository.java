@@ -1,6 +1,6 @@
 package br.univille.geekreviews.repositories;
 
-import br.univille.geekreviews.domain.Filme;
+import br.univille.geekreviews.domain.Serie;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,11 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FilmeRepository extends JpaRepository<Filme, Long> {
+public interface SerieRepository extends JpaRepository<Serie, Long> {
 
-    Filme findByTitulo(String name);
+    Serie findByTitulo(String name);
 
-    @Query("FROM Filme f WHERE LOWER(f.titulo) like %:termo%")
-    Page<Filme> filtrar(@Param("termo") String termo, Pageable pageable);
-
+    @Query("FROM Serie s WHERE LOWER(s.titulo) like %:termo%")
+    Page<Serie> filtrar(@Param("termo") String termo, Pageable pageable);
 }

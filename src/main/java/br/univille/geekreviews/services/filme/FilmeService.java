@@ -9,7 +9,7 @@ public interface FilmeService {
 
     FilmeDTO obterPorId(Long id);
 
-    Page<FilmePesquisaDTO> filtrar(Pageable pageable);
+    Page<FilmePesquisaDTO> filtrar(String search, Pageable pageable);
 
     void salvar(FilmeDTO dto);
 

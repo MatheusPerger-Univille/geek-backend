@@ -30,9 +30,9 @@ public class FilmeServiceImpl implements FilmeService {
     }
 
     @Override
-    public Page<FilmePesquisaDTO> filtrar(Pageable p) {
-        PageRequest pageRequest = PageRequest.of(p.getPageNumber(), p.getPageSize(), p.getSort());
-        Page<Filme> filmes = repo.findAll(pageRequest);
+    public Page<FilmePesquisaDTO> filtrar(String search, Pageable p) {
+
+        Page<Filme> filmes = repo.filtrar(search, p);
         Page<FilmePesquisaDTO> dtos = filmes.map(v -> mapper.toPesquisaDto(v));
 
         return dtos;

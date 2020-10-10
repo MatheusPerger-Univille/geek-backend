@@ -6,7 +6,6 @@ import br.univille.geekreviews.domain.Usuario;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
 
 @MappedSuperclass
 public abstract class Midia extends EntityBaseRoot implements Serializable {
@@ -31,7 +30,7 @@ public abstract class Midia extends EntityBaseRoot implements Serializable {
 
     private boolean ativo = true;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 

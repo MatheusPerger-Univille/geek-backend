@@ -18,7 +18,7 @@ public class Serie extends FilmeSerie {
     @JoinColumn(name = "serie_id", referencedColumnName = "id")
     private List<Categoria> categorias;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "serie", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "serie", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<Avaliacao> avaliacoes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "serie", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
@@ -70,7 +70,7 @@ public class Serie extends FilmeSerie {
 
     public int getNotaMidia() {
         int nota = getAvaliacoes().stream().mapToInt(Avaliacao::getNota).sum();
-        return nota / getAvaliacoes().size();
+        return getAvaliacoes().size() == 0 ? 0 : nota / getAvaliacoes().size();
     }
 
     public List<Comentario> getComentarios() {
