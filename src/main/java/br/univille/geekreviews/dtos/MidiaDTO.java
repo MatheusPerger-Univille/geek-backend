@@ -2,6 +2,7 @@ package br.univille.geekreviews.dtos;
 
 import javax.validation.constraints.NotNull;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -79,6 +80,9 @@ public class MidiaDTO extends AbstractDTO {
     }
 
     public List<CategoriaDTO> getCategorias() {
+        if (categorias == null)
+            categorias = new ArrayList<>();
+
         return categorias;
     }
 

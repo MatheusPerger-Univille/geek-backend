@@ -51,7 +51,7 @@ public class DBService {
         filme1.setElenco("Vin Diesel");
         filme1.setNascionalidade("EUA");
         filme1.setDuracao("2h 30m");
-        filme1.setCategorias(Arrays.asList(cat13, cat8));
+        filme1.setCategorias(Arrays.asList(cat6, cat7));
         filme1.setAvaliacoes(Arrays.asList(new Avaliacao(null, 4, filme1), new Avaliacao(null, 5, filme1)));
         filme1.setComentarios(Arrays.asList(new Comentario("Filme top!!", filme1), new Comentario("Melhor filme", filme1)));
 
@@ -65,7 +65,7 @@ public class DBService {
         filme1.setElenco("Homem de ferro");
         filme1.setNascionalidade("EUA");
         filme1.setDuracao("2h 30m");
-        filme1.setCategorias(Arrays.asList(cat10, cat11));
+        filme1.setCategorias(Arrays.asList(cat6, cat7));
         filme2.setAvaliacoes(Arrays.asList(new Avaliacao(null, 5, filme2)));
         filme1.setComentarios(Arrays.asList(new Comentario("Filme top!!", filme1), new Comentario("Melhor filme", filme1)));
 

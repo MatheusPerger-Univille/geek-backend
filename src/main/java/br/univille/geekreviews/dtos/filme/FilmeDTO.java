@@ -72,6 +72,9 @@ public class FilmeDTO extends MidiaDTO {
     }
 
     public List<AvaliacaoDTO> getAvaliacoes() {
+
+        if (avaliacoes == null)
+            avaliacoes = new ArrayList<>();
         return avaliacoes;
     }
 
@@ -88,8 +91,9 @@ public class FilmeDTO extends MidiaDTO {
     }
 
     public List<ComentarioDTO> getComentarios() {
+
         if (comentarios == null)
-            return new ArrayList<ComentarioDTO>();
+            comentarios = new ArrayList<ComentarioDTO>();
 
         return comentarios;
     }
