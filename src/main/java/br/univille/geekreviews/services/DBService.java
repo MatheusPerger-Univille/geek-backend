@@ -4,6 +4,7 @@ import br.univille.geekreviews.core.domain.TipoMidia;
 import br.univille.geekreviews.domain.*;
 import br.univille.geekreviews.repositories.CategoriaRepository;
 import br.univille.geekreviews.repositories.FilmeRepository;
+import br.univille.geekreviews.repositories.LivroRepository;
 import br.univille.geekreviews.repositories.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class DBService {
 
     @Autowired
     private SerieRepository serieRepository;
+
+    @Autowired
+    private LivroRepository livroRepository;
 
     public void instantiateTestDataBase() {
 
@@ -88,5 +92,19 @@ public class DBService {
         serie.setComentarios(Arrays.asList(new Comentario("Série top!!", serie), new Comentario("Melhor série", serie)));
 
         serieRepository.saveAll(Arrays.asList(serie));
+
+        Livro livro = new Livro();
+        livro.setDataLancamento(Calendar.getInstance());
+        livro.setTipo(TipoMidia.LIVRO);
+        livro.setTitulo("O Homem de Giz");
+        livro.setDescricao("Em 1986, Eddie e os amigos passam a maior parte dos dias andando de bicicleta pela pacata vizinhança em busca de aventuras. Os desenhos a giz são seu código secreto: homenzinhos rabiscados no asfalto; mensagens que só eles entendem...");
+        livro.setCategorias(Arrays.asList(cat6, cat7));
+        livro.setAvaliacoes(Arrays.asList(new Avaliacao(null, 10, livro)));
+        livro.setComentarios(Arrays.asList(new Comentario("Livro top!!", livro), new Comentario("Melhor livro", livro)));
+        livro.setAutor("C. J. Tudor");
+        livro.setEditora("Intrínseca");
+        livro.setNumeroPaginas(272);
+
+        livroRepository.saveAll(Arrays.asList(livro));
     }
 }

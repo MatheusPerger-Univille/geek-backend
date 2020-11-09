@@ -21,10 +21,10 @@ public class Livro extends Midia {
     private BigDecimal peso;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_id", referencedColumnName = "id")
+    @JoinColumn(name = "livro_id", referencedColumnName = "id")
     private List<Categoria> categorias;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<Avaliacao> avaliacoes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
