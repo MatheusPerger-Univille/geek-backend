@@ -54,6 +54,12 @@ public class Avaliacao extends EntityBaseRoot implements Serializable {
         this.serie = serie;
     }
 
+    public Avaliacao(Long id, int nota, Livro livro) {
+        this.id = id;
+        this.nota = nota;
+        this.livro = livro;
+    }
+
     public Avaliacao(Long id, Usuario usuario, int nota) {
         this.id = id;
         this.usuario = usuario;
