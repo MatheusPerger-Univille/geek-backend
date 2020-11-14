@@ -55,6 +55,11 @@ public class Comentario extends EntityBaseRoot implements Serializable {
         this.livro = livro;
     }
 
+    public Comentario(String comentario, Game game) {
+        this.comentario = comentario;
+        this.game = game;
+    }
+
     @Override
     public Long getId() {
         return id;

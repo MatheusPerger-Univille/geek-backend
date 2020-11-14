@@ -10,7 +10,7 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(componentModel="spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {CategoriaMapper.class, AvaliacaoMapper.class, ComentarioMapper.class})
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, uses = {CategoriaMapper.class, AvaliacaoMapper.class, ComentarioMapper.class})
 public interface LivroMapper {
 
     @Mappings({
