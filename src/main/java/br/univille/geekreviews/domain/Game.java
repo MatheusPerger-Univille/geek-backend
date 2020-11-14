@@ -15,14 +15,14 @@ public class Game extends Midia {
 
     private boolean opcaoOnline;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Plataforma> plataformas;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id", referencedColumnName = "id")
     private List<Categoria> categorias;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<Avaliacao> avaliacoes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)

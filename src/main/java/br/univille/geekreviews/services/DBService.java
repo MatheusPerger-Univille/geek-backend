@@ -2,10 +2,7 @@ package br.univille.geekreviews.services;
 
 import br.univille.geekreviews.core.domain.TipoMidia;
 import br.univille.geekreviews.domain.*;
-import br.univille.geekreviews.repositories.CategoriaRepository;
-import br.univille.geekreviews.repositories.FilmeRepository;
-import br.univille.geekreviews.repositories.LivroRepository;
-import br.univille.geekreviews.repositories.SerieRepository;
+import br.univille.geekreviews.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +23,12 @@ public class DBService {
 
     @Autowired
     private LivroRepository livroRepository;
+
+    @Autowired
+    private PlataformaRepository plataformaRepository;
+
+    @Autowired
+    private GameRepository gameRepository;
 
     public void instantiateTestDataBase() {
 
@@ -106,5 +109,30 @@ public class DBService {
         livro.setNumeroPaginas(272);
 
         livroRepository.saveAll(Arrays.asList(livro));
+
+        Plataforma play = new Plataforma();
+        play.setNome("Playstation 4");
+
+        Plataforma playNew = new Plataforma();
+        playNew.setNome("Playstation 5");
+
+        Plataforma xbox = new Plataforma();
+        xbox.setNome("XBOX SERIES X");
+
+        plataformaRepository.saveAll(Arrays.asList(play, playNew, xbox));
+
+        Game game = new Game();
+        game.setDataLancamento(Calendar.getInstance());
+        game.setTipo(TipoMidia.GAME);
+        game.setTitulo("Far Cry 5");
+        game.setDescricao("Em uma ilha...");
+        game.setCategorias(Arrays.asList(cat1, cat2, cat3));
+        game.setAvaliacoes(Arrays.asList(new Avaliacao(null, 10, game)));
+        game.setComentarios(Arrays.asList(new Comentario("Game top!!", game), new Comentario("Melhor game", game)));
+        game.setPlataformas(Arrays.asList(play, playNew, xbox));
+        game.setDesenvolvedora("Ubisoft");
+        game.setOpcaoOnline(false);
+
+        gameRepository.saveAll(Arrays.asList(game));
     }
 }
