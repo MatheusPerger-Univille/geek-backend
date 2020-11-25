@@ -1,5 +1,8 @@
 package br.univille.geekreviews.dtos;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ public class MidiaDTO extends AbstractDTO {
 
     private String urlCapa;
 
-    private File arquivoImagem;
+    private MultipartFile arquivoImagem;
 
     @NotNull(message = "Titulo nulo")
     private String titulo;
@@ -59,11 +62,11 @@ public class MidiaDTO extends AbstractDTO {
         this.urlCapa = urlCapa;
     }
 
-    public File getArquivoImagem() {
+    public MultipartFile getArquivoImagem() {
         return arquivoImagem;
     }
 
-    public void setArquivoImagem(File arquivoImagem) {
+    public void setArquivoImagem(MultipartFile arquivoImagem) {
         this.arquivoImagem = arquivoImagem;
     }
 
