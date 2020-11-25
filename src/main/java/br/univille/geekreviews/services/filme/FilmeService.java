@@ -4,6 +4,7 @@ import br.univille.geekreviews.dtos.filme.FilmeDTO;
 import br.univille.geekreviews.dtos.filme.FilmePesquisaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface FilmeService {
 
@@ -11,9 +12,11 @@ public interface FilmeService {
 
     Page<FilmePesquisaDTO> filtrar(String search, Pageable pageable);
 
-    void salvar(FilmeDTO dto);
+    Long salvar(FilmeDTO dto);
 
-    void atualizar(FilmeDTO dto);
+    Long atualizar(FilmeDTO dto);
 
     void excluir(Long id);
+
+    void uploadImagem(MultipartFile multipartFile, Long idMidia);
 }
