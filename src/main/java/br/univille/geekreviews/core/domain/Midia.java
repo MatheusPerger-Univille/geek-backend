@@ -22,6 +22,7 @@ public abstract class Midia extends EntityBaseRoot implements Serializable {
     @Enumerated(EnumType.STRING)
     private TipoMidia tipo;
 
+    @Column(length = 4000)
     private String descricao;
 
     private String urlCapa;

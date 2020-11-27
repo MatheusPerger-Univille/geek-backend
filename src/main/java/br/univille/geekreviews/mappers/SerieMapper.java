@@ -20,6 +20,10 @@ public interface SerieMapper {
     })
     SerieDTO toDto(Serie entity);
 
+    @Mappings({
+            @Mapping(target = "numeroEpisodios", source = "numeroEpisodios"),
+            @Mapping(target = "numeroTemporadas", source = "numeroTemporadas")
+    })
     Serie toEntity(SerieDTO dto);
 
     List<SerieDTO> toDtos(List<Serie> serie);
