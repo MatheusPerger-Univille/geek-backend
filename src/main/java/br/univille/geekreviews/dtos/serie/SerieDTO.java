@@ -37,6 +37,22 @@ public class SerieDTO extends MidiaDTO {
 
     private int notaMidia;
 
+    public int getNumeroEpisodios() {
+        return numeroEpisodios;
+    }
+
+    public void setNumeroEpisodios(int numeroEpisodios) {
+        this.numeroEpisodios = numeroEpisodios;
+    }
+
+    public int getNumeroTemporadas() {
+        return numeroTemporadas;
+    }
+
+    public void setNumeroTemporadas(int numeroTemporadas) {
+        this.numeroTemporadas = numeroTemporadas;
+    }
+
     public String getDirecao() {
         return direcao;
     }
