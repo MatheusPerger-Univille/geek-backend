@@ -1,29 +1,20 @@
-package br.univille.geekreviews.domain;
+package br.univille.geekreviews.dtos.usuario;
 
-import br.univille.geekreviews.core.domain.EntityBaseRoot;
 import br.univille.geekreviews.domain.enums.Permissao;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import br.univille.geekreviews.dtos.AbstractDTO;
 
-import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
 
-@Entity
-@DynamicUpdate
-@SQLDelete(sql = "UPDATE Usuario u SET u.ativo = 0 WHERE id = ?")
-@Where(clause = "ativo = 1")
-public class Usuario extends EntityBaseRoot {
+public class UsuarioDTO extends AbstractDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @NotEmpty(message = "Nome não preenchido!")
     private String nome;
 
+    @NotEmpty(message = "E-mail não preenchido!")
     private String email;
+
+    @NotEmpty(message = "Senha não preenchida!")
+    private String senha;
 
     private String apelido;
 
@@ -31,25 +22,9 @@ public class Usuario extends EntityBaseRoot {
 
     private String cidade;
 
-    @Enumerated(EnumType.STRING)
     private Permissao permissao;
 
     private boolean ativo = true;
-
-    private String senha;
-
-    public Usuario() {
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -65,6 +40,14 @@ public class Usuario extends EntityBaseRoot {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getApelido() {
@@ -105,13 +88,5 @@ public class Usuario extends EntityBaseRoot {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

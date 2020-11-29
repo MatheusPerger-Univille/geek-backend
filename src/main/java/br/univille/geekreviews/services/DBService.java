@@ -2,8 +2,10 @@ package br.univille.geekreviews.services;
 
 import br.univille.geekreviews.core.domain.TipoMidia;
 import br.univille.geekreviews.domain.*;
+import br.univille.geekreviews.domain.enums.Permissao;
 import br.univille.geekreviews.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -29,6 +31,12 @@ public class DBService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder pe;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public void instantiateTestDataBase() {
 
@@ -134,5 +142,32 @@ public class DBService {
         game.setOpcaoOnline(false);
 
         gameRepository.saveAll(Arrays.asList(game));
+
+
+        Usuario usuario = new Usuario();
+        usuario.setNome("Matheus");
+        usuario.setEmail("matheusperger@gmail.com");
+        usuario.setSenha(pe.encode("batata"));
+        usuario.setCidade("Joinville");
+        usuario.setUF("SC");
+        usuario.setPermissao(Permissao.ADMINISTRADOR);
+
+        Usuario usuario2 = new Usuario();
+        usuario2.setNome("Tiago");
+        usuario2.setEmail("tiago@gmail.com");
+        usuario2.setSenha(pe.encode("tng"));
+        usuario2.setCidade("Joinville");
+        usuario2.setUF("SC");
+        usuario2.setPermissao(Permissao.REDATOR);
+
+        Usuario usuario3 = new Usuario();
+        usuario3.setNome("Adriano");
+        usuario3.setEmail("adriano@gmail.com");
+        usuario3.setSenha(pe.encode("brasil"));
+        usuario3.setCidade("Joinville");
+        usuario3.setUF("SC");
+        usuario3.setPermissao(Permissao.USUARIO);
+
+        usuarioRepository.saveAll(Arrays.asList(usuario, usuario2, usuario3));
     }
 }
