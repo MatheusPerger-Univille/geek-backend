@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -33,18 +34,16 @@ public class LivroController {
         return new ResponseEntity<>(this.service.filtrar(search, pageable), HttpStatus.OK);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void salvar(@Valid @RequestBody LivroDTO dto) {
+    public ResponseEntity<Long> salvar(@Valid @RequestBody LivroDTO dto) {
 
-        this.service.salvar(dto);
+        return new ResponseEntity<>(this.service.salvar(dto), HttpStatus.CREATED);
     }
 
-    @ResponseStatus(HttpStatus.OK)
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void atualizar(@Valid @RequestBody LivroDTO dto) {
+    public ResponseEntity<Long> atualizar(@Valid @RequestBody LivroDTO dto) {
 
-        this.service.atualizar(dto);
+        return new ResponseEntity<>(this.service.atualizar(dto), HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -52,5 +51,12 @@ public class LivroController {
     public void excluir(@PathVariable("id") Long id) {
 
         this.service.excluir(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(value = "/upload/{id}")
+    public void upload(@RequestParam(name = "file") MultipartFile file, @PathVariable("id") Long idLivro) {
+
+        this.service.uploadImagem(file, idLivro);
     }
 }

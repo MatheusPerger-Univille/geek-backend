@@ -14,10 +14,10 @@ public class Filme extends FilmeSerie {
     @JoinColumn(name = "filme_id", referencedColumnName = "id")
     private List<Categoria> categorias;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "filme", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "filme", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
     private List<Avaliacao> avaliacoes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "filme", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "filme", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
     private List<Comentario> comentarios;
 
     public List<Categoria> getCategorias() {

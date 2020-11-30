@@ -17,7 +17,6 @@ public interface AvaliacaoMapper {
     })
     AvaliacaoDTO toDto(Avaliacao entity);
 
-    @InheritInverseConfiguration
     Avaliacao toEntity(AvaliacaoDTO dto);
 
     List<AvaliacaoDTO> toDtos(List<Avaliacao> entitys);
