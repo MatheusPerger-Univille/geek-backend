@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -35,19 +36,17 @@ public class SerieController {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void salvar(@Valid @RequestBody SerieDTO dto) {
+    public ResponseEntity<Long> salvar(@Valid @RequestBody SerieDTO dto) {
 
-        this.service.salvar(dto);
+        return new ResponseEntity<>(this.service.salvar(dto), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
-    @ResponseStatus(HttpStatus.OK)
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void atualizar(@Valid @RequestBody SerieDTO dto) {
+    public ResponseEntity<Long> atualizar(@Valid @RequestBody SerieDTO dto) {
 
-        this.service.atualizar(dto);
+        return new ResponseEntity<>(this.service.atualizar(dto), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
@@ -56,5 +55,12 @@ public class SerieController {
     public void excluir(@PathVariable("id") Long id) {
 
         this.service.excluir(id);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(value = "/upload/{id}")
+    public void upload(@RequestParam(name = "file") MultipartFile file, @PathVariable("id") Long idSerie) {
+
+        this.service.uploadImagem(file, idSerie);
     }
 }

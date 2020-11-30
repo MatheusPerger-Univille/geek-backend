@@ -4,6 +4,7 @@ import br.univille.geekreviews.dtos.livro.LivroDTO;
 import br.univille.geekreviews.dtos.livro.LivroPesquisaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface LivroService {
 
@@ -11,9 +12,11 @@ public interface LivroService {
 
     Page<LivroPesquisaDTO> filtrar(String search, Pageable pageable);
 
-    void salvar(LivroDTO dto);
+    Long salvar(LivroDTO dto);
 
-    void atualizar(LivroDTO dto);
+    Long atualizar(LivroDTO dto);
 
     void excluir(Long id);
+
+    void uploadImagem(MultipartFile multipartFile, Long idMidia);
 }

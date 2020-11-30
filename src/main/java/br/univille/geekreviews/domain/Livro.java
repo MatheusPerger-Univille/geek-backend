@@ -24,10 +24,10 @@ public class Livro extends Midia {
     @JoinColumn(name = "livro_id", referencedColumnName = "id")
     private List<Categoria> categorias;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
     private List<Avaliacao> avaliacoes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
     private List<Comentario> comentarios;
 
     public String getAutor() {
