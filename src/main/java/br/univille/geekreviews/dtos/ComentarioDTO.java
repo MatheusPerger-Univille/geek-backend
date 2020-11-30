@@ -1,5 +1,7 @@
 package br.univille.geekreviews.dtos;
 
+import br.univille.geekreviews.core.domain.TipoMidia;
+
 public class ComentarioDTO extends AbstractDTO {
 
     private Long userId;
@@ -7,6 +9,10 @@ public class ComentarioDTO extends AbstractDTO {
     private String userName;
 
     private String comentario;
+
+    private Long idMidia;
+
+    private TipoMidia tipoMidia;
 
     public Long getUserId() {
         return userId;
@@ -30,5 +36,21 @@ public class ComentarioDTO extends AbstractDTO {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Long getIdMidia() {
+        return idMidia;
+    }
+
+    public void setIdMidia(Long idMidia) {
+        this.idMidia = idMidia;
+    }
+
+    public TipoMidia getTipoMidia() {
+        return tipoMidia;
+    }
+
+    public void setTipoMidia(TipoMidia tipoMidia) {
+        this.tipoMidia = tipoMidia;
     }
 }

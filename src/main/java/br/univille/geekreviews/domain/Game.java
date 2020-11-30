@@ -22,10 +22,10 @@ public class Game extends Midia {
     @JoinColumn(name = "game_id", referencedColumnName = "id")
     private List<Categoria> categorias;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
     private List<Avaliacao> avaliacoes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = { CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "game", cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
     private List<Comentario> comentarios;
 
     public Game() {

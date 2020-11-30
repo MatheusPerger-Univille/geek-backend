@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FilmeRepository extends JpaRepository<Filme, Long> {
 
@@ -15,5 +17,8 @@ public interface FilmeRepository extends JpaRepository<Filme, Long> {
 
     @Query("FROM Filme f WHERE LOWER(f.titulo) like %:termo%")
     Page<Filme> filtrar(@Param("termo") String termo, Pageable pageable);
+
+    @Query("FROM Filme f WHERE LOWER(f.titulo) like %:termo%")
+    List<Filme> obterPorTitulo(@Param("termo") String termo);
 
 }

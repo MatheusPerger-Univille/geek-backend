@@ -15,7 +15,6 @@ public class Avaliacao extends EntityBaseRoot implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @NotNull(message = "Usuário nulo")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;

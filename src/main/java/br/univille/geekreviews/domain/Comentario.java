@@ -16,7 +16,6 @@ public class Comentario extends EntityBaseRoot implements Serializable {
 
     private String comentario;
 
-    // @NotNull(message = "Usuário nulo")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
