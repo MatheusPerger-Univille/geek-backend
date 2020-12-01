@@ -21,4 +21,7 @@ public interface FilmeRepository extends JpaRepository<Filme, Long> {
     @Query("FROM Filme f WHERE LOWER(f.titulo) like %:termo%")
     List<Filme> obterPorTitulo(@Param("termo") String termo);
 
+    @Query("FROM Filme f INNER JOIN f.categorias c WHERE c.id = :cat")
+    List<Filme> obterPorCategoria(@Param("cat") Long cat);
+
 }

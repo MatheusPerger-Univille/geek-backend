@@ -21,4 +21,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
     @Query("FROM Livro f WHERE LOWER(f.titulo) like %:termo%")
     List<Livro> obterPorTitulo(@Param("termo") String termo);
 
+    @Query("FROM Livro f INNER JOIN f.categorias c WHERE c.id = :cat")
+    List<Livro> obterPorCategoria(@Param("cat") Long cat);
+
 }

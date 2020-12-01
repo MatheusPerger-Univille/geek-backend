@@ -1,8 +1,9 @@
 package br.univille.geekreviews.controllers;
 
-import br.univille.geekreviews.dtos.game.plataforma.PlataformaDTO;
-import br.univille.geekreviews.dtos.game.plataforma.PlataformaPesquisaDTO;
-import br.univille.geekreviews.services.game.plataforma.PlataformaService;
+import br.univille.geekreviews.dtos.usuario.UsuarioDTO;
+import br.univille.geekreviews.dtos.usuario.UsuarioLogadoDTO;
+import br.univille.geekreviews.dtos.usuario.UsuarioPesquisaDTO;
+import br.univille.geekreviews.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,46 +16,49 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/plataformas", produces = MediaType.APPLICATION_JSON_VALUE)
-public class PlataformaController {
+@RequestMapping(value = "/api/usuarios", produces = MediaType.APPLICATION_JSON_VALUE)
+public class UsuarioController {
 
     @Autowired
-    private PlataformaService service;
+    private UsuarioService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PlataformaDTO> obterPorId(@PathVariable("id") Long id) {
+    public ResponseEntity<UsuarioDTO> obterPorId(@PathVariable("id") Long id) {
 
         return new ResponseEntity<>(this.service.obterPorId(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
-    @GetMapping(value = "/filtrar")
-    public ResponseEntity<Page<PlataformaPesquisaDTO>> filtrar(String search, Pageable pageable) {
+    @GetMapping(value = "/email")
+    public ResponseEntity<UsuarioLogadoDTO> obterPorEmail(@RequestParam("value") String email) {
 
-        return new ResponseEntity<>(this.service.filtrar(search, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.obterPorEmail(email), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void salvar(@Valid @RequestBody PlataformaDTO dto) {
+    public void salvar(@Valid @RequestBody UsuarioDTO dto) {
 
         this.service.salvar(dto);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void atualizar(@Valid @RequestBody PlataformaDTO dto) {
+    public void atualizar(@Valid @RequestBody UsuarioDTO dto) {
 
         this.service.atualizar(dto);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'REDATOR')")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(value = "/{id}")
     public void excluir(@PathVariable("id") Long id) {
 
         this.service.excluir(id);
+    }
+
+    // @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping(value = "/filtrar")
+    public ResponseEntity<Page<UsuarioPesquisaDTO>> filtrar(String search, Pageable pageable) {
+
+        return new ResponseEntity<>(this.service.filtrar(search, pageable), HttpStatus.OK);
     }
 }
