@@ -5,11 +5,15 @@ import br.univille.geekreviews.domain.*;
 import br.univille.geekreviews.dtos.AvaliacaoDTO;
 import br.univille.geekreviews.mappers.AvaliacaoMapper;
 import br.univille.geekreviews.repositories.*;
+import br.univille.geekreviews.security.UserSS;
 import br.univille.geekreviews.services.exception.BusinessException;
 import br.univille.geekreviews.services.exception.ObjectNotFoundException;
+import com.amazonaws.services.licensemanager.model.AuthorizationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static br.univille.geekreviews.services.usuario.UsuarioServiceImpl.getUsuarioLogado;
 
 @Service
 @Transactional
@@ -31,13 +35,22 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
     private GameRepository gameRepository;
 
     @Autowired
+    private UsuarioRepository userRepository;
+
+    @Autowired
     private AvaliacaoMapper mapper;
 
     @Override
     public void salvar(AvaliacaoDTO dto) {
 
+        UserSS user = getUsuarioLogado();
+
+        if (user == null)
+            throw new AuthorizationException("Acesso negado");
+
         Avaliacao entity = this.mapper.toEntity(dto);
         this.setarMidia(dto.getTipoMidia(), dto.getIdMidia(), entity);
+        entity.setUsuario(userRepository.findById(user.getId()).get());
 
         this.repo.save(entity);
     }
@@ -45,8 +58,14 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
     @Override
     public void atualizar(AvaliacaoDTO dto) {
 
+        UserSS user = getUsuarioLogado();
+
+        if (user == null)
+            throw new AuthorizationException("Acesso negado");
+
         Avaliacao entity = this.mapper.toEntity(dto);
         this.setarMidia(dto.getTipoMidia(), dto.getIdMidia(), entity);
+        entity.setUsuario(userRepository.findById(user.getId()).get());
 
         this.repo.save(entity);
     }

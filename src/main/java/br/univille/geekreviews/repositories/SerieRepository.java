@@ -20,4 +20,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query("FROM Serie s WHERE LOWER(s.titulo) like %:termo%")
     List<Serie> obterPorTitulo(@Param("termo") String termo);
+
+    @Query("FROM Serie f INNER JOIN f.categorias c WHERE c.id = :cat")
+    List<Serie> obterPorCategoria(@Param("cat") Long cat);
 }

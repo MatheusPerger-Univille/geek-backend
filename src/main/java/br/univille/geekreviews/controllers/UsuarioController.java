@@ -1,6 +1,7 @@
 package br.univille.geekreviews.controllers;
 
 import br.univille.geekreviews.dtos.usuario.UsuarioDTO;
+import br.univille.geekreviews.dtos.usuario.UsuarioLogadoDTO;
 import br.univille.geekreviews.dtos.usuario.UsuarioPesquisaDTO;
 import br.univille.geekreviews.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "/email")
-    public ResponseEntity<UsuarioDTO> obterPorEmail(@RequestParam("value") String email) {
+    public ResponseEntity<UsuarioLogadoDTO> obterPorEmail(@RequestParam("value") String email) {
 
         return new ResponseEntity<>(this.service.obterPorEmail(email), HttpStatus.OK);
     }
@@ -44,7 +45,7 @@ public class UsuarioController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void atualizar(@Valid @RequestBody UsuarioDTO dto) {
 
-        this.service.salvar(dto);
+        this.service.atualizar(dto);
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -2,10 +2,12 @@ package br.univille.geekreviews.services.usuario;
 
 import br.univille.geekreviews.domain.Usuario;
 import br.univille.geekreviews.dtos.usuario.UsuarioDTO;
+import br.univille.geekreviews.dtos.usuario.UsuarioLogadoDTO;
 import br.univille.geekreviews.dtos.usuario.UsuarioPesquisaDTO;
 import br.univille.geekreviews.mappers.UsuarioMapper;
 import br.univille.geekreviews.repositories.UsuarioRepository;
 import br.univille.geekreviews.security.UserSS;
+import br.univille.geekreviews.services.exception.BusinessException;
 import br.univille.geekreviews.services.exception.ObjectNotFoundException;
 import com.amazonaws.services.licensemanager.model.AuthorizationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void salvar(UsuarioDTO dto) {
 
+        if (repo.findByEmail(dto.getEmail()) != null)
+            throw new BusinessException("Email já cadastrado.");
+
         Usuario entity = mapper.toEntity(dto);
         entity.setSenha(be.encode(dto.getSenha()));
         repo.save(entity);
@@ -73,7 +78,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioDTO obterPorEmail(String email) {
+    public UsuarioLogadoDTO obterPorEmail(String email) {
 
         UserSS user = getUsuarioLogado();
 
@@ -86,7 +91,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new ObjectNotFoundException(
                     "Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Usuario.class.getName());
         }
-        return mapper.toDto(entity);
+        return mapper.toLogadoDto(entity);
     }
 
     /**

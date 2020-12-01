@@ -1,6 +1,7 @@
 package br.univille.geekreviews.services.usuario;
 
 import br.univille.geekreviews.dtos.usuario.UsuarioDTO;
+import br.univille.geekreviews.dtos.usuario.UsuarioLogadoDTO;
 import br.univille.geekreviews.dtos.usuario.UsuarioPesquisaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,5 @@ public interface UsuarioService {
 
     void excluir(Long id);
 
-    UsuarioDTO obterPorEmail(String email);
+    UsuarioLogadoDTO obterPorEmail(String email);
 }

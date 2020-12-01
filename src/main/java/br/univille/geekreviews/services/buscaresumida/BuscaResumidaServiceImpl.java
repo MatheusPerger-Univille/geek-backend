@@ -66,6 +66,21 @@ public class BuscaResumidaServiceImpl implements BuscaResumidaService {
                     livros.addAll(livroRepository.findAll());
                     break;
             }
+        } else if (filtro.hasCategoria()) {
+            switch (filtro.getTipoMidia()) {
+                case FILME:
+                    filmes.addAll(filmeRepository.obterPorCategoria(filtro.getCategoria()));
+                    break;
+                case SERIE:
+                    series.addAll(serieRepository.obterPorCategoria(filtro.getCategoria()));
+                    break;
+                case GAME:
+                    games.addAll(gameRepository.obterPorCategoria(filtro.getCategoria()));
+                    break;
+                case LIVRO:
+                    livros.addAll(livroRepository.obterPorCategoria(filtro.getCategoria()));
+                    break;
+            }
         } else {
             filmes.addAll(filmeRepository.obterPorTitulo(filtro.getTermo()));
             livros.addAll(livroRepository.obterPorTitulo(filtro.getTermo()));

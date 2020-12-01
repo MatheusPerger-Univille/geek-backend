@@ -19,4 +19,6 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     @Query("FROM Game f WHERE LOWER(f.titulo) like %:termo%")
     List<Game> obterPorTitulo(@Param("termo") String termo);
 
+    @Query("FROM Game f INNER JOIN f.categorias c WHERE c.id = :cat")
+    List<Game> obterPorCategoria(@Param("cat") Long cat);
 }

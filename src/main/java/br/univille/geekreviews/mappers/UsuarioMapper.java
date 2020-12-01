@@ -2,6 +2,7 @@ package br.univille.geekreviews.mappers;
 
 import br.univille.geekreviews.domain.Usuario;
 import br.univille.geekreviews.dtos.usuario.UsuarioDTO;
+import br.univille.geekreviews.dtos.usuario.UsuarioLogadoDTO;
 import br.univille.geekreviews.dtos.usuario.UsuarioPesquisaDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -20,4 +21,6 @@ public interface UsuarioMapper {
     UsuarioPesquisaDTO toPesquisaDto(Usuario entity);
 
     List<UsuarioPesquisaDTO> toPesquisaDtos(List<Usuario> usuarios);
+
+    UsuarioLogadoDTO toLogadoDto(Usuario entity);
 }
